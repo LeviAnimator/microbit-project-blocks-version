@@ -75,6 +75,27 @@ function onstart () {
     	
     }
 }
+function whatPartToRun () {
+    if (start == 1) {
+        onstart()
+    } else if (two == 1) {
+        partTwo()
+    } else if (three == 0) {
+        partThree()
+    } else {
+        while (realisation < 0) {
+            Realisationfn()
+        }
+    }
+}
+function partThree () {
+    ScrolText.showString(
+    "DO THIS PART",
+    SCROLL_DIR.LEFT,
+    SCROLL_ROTATE.SR_0,
+    100
+    )
+}
 function Sleep () {
     ScrolText.showString(
     "Z z z z z z (_ _ \")..",
@@ -96,6 +117,7 @@ function Sleep () {
 }
 input.onGesture(Gesture.SixG, function () {
     GetHit()
+    whatPartToRun()
 })
 function Realisationfn () {
     realisation += -1
@@ -157,6 +179,7 @@ function Shake () {
 }
 input.onGesture(Gesture.Shake, function () {
     Shake()
+    whatPartToRun()
 })
 function GetHit () {
     basic.showLeds(`
@@ -187,7 +210,12 @@ function GetHit () {
 }
 input.onGesture(Gesture.LogoDown, function () {
     Sleep()
+    whatPartToRun()
 })
 let realisation = 0
-onstart()
-partTwo()
+let start = 0
+let two = 0
+let three = 0
+three = 1
+two = 1
+start = 1

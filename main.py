@@ -52,6 +52,18 @@ def onstart():
         Realisationfn()
     else:
         pass
+def whatPartToRun():
+    if start == 1:
+        onstart()
+    elif two == 1:
+        partTwo()
+    elif three == 0:
+        partThree()
+    else:
+        while realisation < 0:
+            Realisationfn()
+def partThree():
+    ScrolText.show_string("DO THIS PART", SCROLL_DIR.LEFT, SCROLL_ROTATE.SR_0, 100)
 def Sleep():
     ScrolText.show_string("Z z z z z z (_ _ \")..",
         SCROLL_DIR.LEFT,
@@ -66,6 +78,7 @@ def Sleep():
 
 def on_gesture_six_g():
     GetHit()
+    whatPartToRun()
 input.on_gesture(Gesture.SIX_G, on_gesture_six_g)
 
 def Realisationfn():
@@ -124,6 +137,7 @@ def Shake():
 
 def on_gesture_shake():
     Shake()
+    whatPartToRun()
 input.on_gesture(Gesture.SHAKE, on_gesture_shake)
 
 def GetHit():
@@ -151,8 +165,13 @@ def GetHit():
 
 def on_gesture_logo_down():
     Sleep()
+    whatPartToRun()
 input.on_gesture(Gesture.LOGO_DOWN, on_gesture_logo_down)
 
 realisation = 0
-onstart()
-partTwo()
+start = 0
+two = 0
+three = 0
+three = 1
+two = 1
+start = 1
