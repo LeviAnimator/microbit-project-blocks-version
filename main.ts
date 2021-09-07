@@ -1,39 +1,91 @@
-input.onButtonPressed(Button.A, function () {
-	
-})
-function sovietAnthem () {
-    midi.playDrum(MidiInstrument.AcousticGrandPiano)
-}
-function Korobeiniki () {
-    music.playMelody("B - F G A - G F ", 170)
-    music.playMelody("E - E G B - A F ", 170)
-}
-function layerOne () {
+function onstart () {
+    realisation += randint(10, 200)
     ScrolText.showString(
-    "M u s i c",
+    "Hello Father",
     SCROLL_DIR.LEFT,
     SCROLL_ROTATE.SR_0,
     100
     )
-    if (input.buttonIsPressed(Button.A)) {
+    Realisationfn()
+    basic.showLeds(`
+        . # . # .
+        . . . . .
+        # . . . #
+        . # # # .
+        . . . . .
+        `)
+    basic.pause(2000)
+    bitbot.rotatems(BBRobotDirection.Left, 40, 500)
+    bitbot.rotatems(BBRobotDirection.Right, 40, 1000)
+    bitbot.rotatems(BBRobotDirection.Left, 40, 500)
+    Realisationfn()
+    ScrolText.showString(
+    "Can I go play over there?",
+    SCROLL_DIR.LEFT,
+    SCROLL_ROTATE.SR_0,
+    100
+    )
+    Realisationfn()
+    images.createBigImage(`
+        . # # . # # . . . .
+        . # # . # # . # # #
+        . . . . . . . # # .
+        . # # # # # . . . .
+        # . . . . . # . . .
+        `).showImage(0)
+    Realisationfn()
+    bitbot.rotatems(BBRobotDirection.Left, 50, 500)
+    bitbot.rotatems(BBRobotDirection.Right, 50, 500)
+    Realisationfn()
+    ScrolText.showString(
+    "Please",
+    SCROLL_DIR.LEFT,
+    SCROLL_ROTATE.SR_0,
+    100
+    )
+    Realisationfn()
+}
+function Realisationfn () {
+    realisation += -1
+    if (realisation == 0) {
+        bitbot.rotatems(BBRobotDirection.Left, 100, 1000)
+        bitbot.goms(BBDirection.Forward, 100, 250)
+        bitbot.rotatems(BBRobotDirection.Left, 100, 1000)
+        bitbot.goms(BBDirection.Forward, 100, 250)
+        bitbot.rotatems(BBRobotDirection.Left, 100, 1000)
+        bitbot.goms(BBDirection.Forward, 100, 250)
+        bitbot.rotatems(BBRobotDirection.Left, 100, 1000)
+        bitbot.goms(BBDirection.Forward, 100, 250)
         ScrolText.showString(
-        "T E T R I S",
+        "W H E R E A M I H E L P M E . I T ' S D A R K I N H E R E",
         SCROLL_DIR.LEFT,
         SCROLL_ROTATE.SR_0,
         100
         )
-        if (input.buttonIsPressed(Button.A)) {
-            Korobeiniki()
-        }
-    } else if (input.buttonIsPressed(Button.B)) {
-        ScrolText.showString(
-        "F O O D",
-        SCROLL_DIR.LEFT,
-        SCROLL_ROTATE.SR_0,
-        100
-        )
-    } else {
-    	
+        basic.pause(500)
+        bitbot.go(BBDirection.Forward, 100)
+        bitbot.go(BBDirection.Reverse, 100)
     }
 }
-layerOne()
+function Dunno () {
+    bitbot.goms(BBDirection.Forward, 60, 5000)
+    bitbot.rotatems(BBRobotDirection.Right, 60, 400)
+    ScrolText.showString(
+    "FUCKYOU",
+    SCROLL_DIR.LEFT,
+    SCROLL_ROTATE.SR_0,
+    100
+    )
+    basic.showLeds(`
+        . # . # .
+        . . . . .
+        . . . . .
+        # . . . #
+        . # # # .
+        `)
+    bitbot.ledRainbow()
+    bitbot.goms(BBDirection.Forward, 60, randint(1000, 10000))
+    Realisationfn()
+}
+let realisation = 0
+onstart()
