@@ -75,6 +75,28 @@ function onstart () {
     	
     }
 }
+function Sleep () {
+    ScrolText.showString(
+    "Z z z z z z (_ _ \")..",
+    SCROLL_DIR.LEFT,
+    SCROLL_ROTATE.SR_0,
+    100
+    )
+    Realisationfn()
+    basic.pause(10000)
+    bitbot.goms(BBDirection.Reverse, 100, 2000)
+    Realisationfn()
+    ScrolText.showString(
+    "I CANT SLEEP",
+    SCROLL_DIR.LEFT,
+    SCROLL_ROTATE.SR_0,
+    100
+    )
+    Realisationfn()
+}
+input.onGesture(Gesture.SixG, function () {
+    GetHit()
+})
 function Realisationfn () {
     realisation += -1
     if (realisation == 0) {
@@ -100,7 +122,7 @@ function Realisationfn () {
 function partTwo () {
     bitbot.stop(BBStopMode.Coast)
 }
-input.onGesture(Gesture.Shake, function () {
+function Shake () {
     basic.showLeds(`
         # . . # .
         # . . # .
@@ -129,7 +151,42 @@ input.onGesture(Gesture.Shake, function () {
         . . . . .
         # # # # .
         `)
+    Realisationfn()
     images.iconImage(IconNames.Sad).showImage(0)
+    Realisationfn()
+}
+input.onGesture(Gesture.Shake, function () {
+    Shake()
+})
+function GetHit () {
+    basic.showLeds(`
+        . # . # .
+        . . . . .
+        . . . . .
+        . # # # .
+        # . . . #
+        `)
+    Realisationfn()
+    basic.pause(2000)
+    ScrolText.showString(
+    "Why did you hit me? :(",
+    SCROLL_DIR.LEFT,
+    SCROLL_ROTATE.SR_0,
+    100
+    )
+    ScrolText.showString(
+    "I'm leaving this abuse you put me through! >:(",
+    SCROLL_DIR.LEFT,
+    SCROLL_ROTATE.SR_0,
+    100
+    )
+    Realisationfn()
+    bitbot.rotatems(BBRobotDirection.Left, 90, 600)
+    bitbot.goms(BBDirection.Forward, 100, 2000)
+    Realisationfn()
+}
+input.onGesture(Gesture.LogoDown, function () {
+    Sleep()
 })
 let realisation = 0
 onstart()

@@ -48,10 +48,26 @@ def onstart():
                         # . . . #
         """)
         bitbot.rotatems(BBRobotDirection.RIGHT, 50, 500)
-        bitbot.go(BBDirection.FORWARD, 20)
+        bitbot.goms(BBDirection.FORWARD, 15, 5000)
         Realisationfn()
     else:
         pass
+def Sleep():
+    ScrolText.show_string("Z z z z z z (_ _ \")..",
+        SCROLL_DIR.LEFT,
+        SCROLL_ROTATE.SR_0,
+        100)
+    Realisationfn()
+    basic.pause(10000)
+    bitbot.goms(BBDirection.REVERSE, 100, 2000)
+    Realisationfn()
+    ScrolText.show_string("I CANT SLEEP", SCROLL_DIR.LEFT, SCROLL_ROTATE.SR_0, 100)
+    Realisationfn()
+
+def on_gesture_six_g():
+    GetHit()
+input.on_gesture(Gesture.SIX_G, on_gesture_six_g)
+
 def Realisationfn():
     global realisation
     realisation += -1
@@ -71,5 +87,72 @@ def Realisationfn():
         basic.pause(500)
         bitbot.go(BBDirection.FORWARD, 100)
         bitbot.go(BBDirection.REVERSE, 100)
+def partTwo():
+    bitbot.stop(BBStopMode.COAST)
+def Shake():
+    basic.show_leds("""
+        # . . # .
+                # . . # .
+                . . . . .
+                . . . . .
+                . # # # #
+    """)
+    basic.show_leds("""
+        . # . . #
+                . # . . #
+                . . . . .
+                . . . . .
+                # # # # .
+    """)
+    basic.show_leds("""
+        # . . # .
+                # . . # .
+                . . . . .
+                . . . . .
+                . # # # #
+    """)
+    basic.show_leds("""
+        . # . . #
+                . # . . #
+                . . . . .
+                . . . . .
+                # # # # .
+    """)
+    Realisationfn()
+    images.icon_image(IconNames.SAD).show_image(0)
+    Realisationfn()
+
+def on_gesture_shake():
+    Shake()
+input.on_gesture(Gesture.SHAKE, on_gesture_shake)
+
+def GetHit():
+    basic.show_leds("""
+        . # . # .
+                . . . . .
+                . . . . .
+                . # # # .
+                # . . . #
+    """)
+    Realisationfn()
+    basic.pause(2000)
+    ScrolText.show_string("Why did you hit me? :(",
+        SCROLL_DIR.LEFT,
+        SCROLL_ROTATE.SR_0,
+        100)
+    ScrolText.show_string("I'm leaving this abuse you put me through! >:(",
+        SCROLL_DIR.LEFT,
+        SCROLL_ROTATE.SR_0,
+        100)
+    Realisationfn()
+    bitbot.rotatems(BBRobotDirection.LEFT, 90, 600)
+    bitbot.goms(BBDirection.FORWARD, 100, 2000)
+    Realisationfn()
+
+def on_gesture_logo_down():
+    Sleep()
+input.on_gesture(Gesture.LOGO_DOWN, on_gesture_logo_down)
+
 realisation = 0
 onstart()
+partTwo()
