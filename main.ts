@@ -14,6 +14,7 @@ function onstart () {
         . # # # .
         . . . . .
         `)
+    Realisationfn()
     basic.pause(2000)
     bitbot.rotatems(BBRobotDirection.Left, 40, 500)
     bitbot.rotatems(BBRobotDirection.Right, 40, 1000)
@@ -44,6 +45,35 @@ function onstart () {
     100
     )
     Realisationfn()
+    if (input.buttonIsPressed(Button.A)) {
+        ScrolText.showString(
+        "Thanks dad",
+        SCROLL_DIR.LEFT,
+        SCROLL_ROTATE.SR_0,
+        100
+        )
+        bitbot.rotatems(BBRobotDirection.Left, 50, 500)
+        Realisationfn()
+    } else if (input.buttonIsPressed(Button.B)) {
+        ScrolText.showString(
+        "Okay dad.",
+        SCROLL_DIR.LEFT,
+        SCROLL_ROTATE.SR_0,
+        100
+        )
+        basic.showLeds(`
+            . # . # .
+            . . . . .
+            . . . . .
+            . # # # .
+            # . . . #
+            `)
+        bitbot.rotatems(BBRobotDirection.Right, 50, 500)
+        bitbot.goms(BBDirection.Forward, 15, 5000)
+        Realisationfn()
+    } else {
+    	
+    }
 }
 function Realisationfn () {
     realisation += -1
@@ -67,25 +97,40 @@ function Realisationfn () {
         bitbot.go(BBDirection.Reverse, 100)
     }
 }
-function Dunno () {
-    bitbot.goms(BBDirection.Forward, 60, 5000)
-    bitbot.rotatems(BBRobotDirection.Right, 60, 400)
-    ScrolText.showString(
-    "FUCKYOU",
-    SCROLL_DIR.LEFT,
-    SCROLL_ROTATE.SR_0,
-    100
-    )
-    basic.showLeds(`
-        . # . # .
-        . . . . .
-        . . . . .
-        # . . . #
-        . # # # .
-        `)
-    bitbot.ledRainbow()
-    bitbot.goms(BBDirection.Forward, 60, randint(1000, 10000))
-    Realisationfn()
+function partTwo () {
+    bitbot.stop(BBStopMode.Coast)
 }
+input.onGesture(Gesture.Shake, function () {
+    basic.showLeds(`
+        # . . # .
+        # . . # .
+        . . . . .
+        . . . . .
+        . # # # #
+        `)
+    basic.showLeds(`
+        . # . . #
+        . # . . #
+        . . . . .
+        . . . . .
+        # # # # .
+        `)
+    basic.showLeds(`
+        # . . # .
+        # . . # .
+        . . . . .
+        . . . . .
+        . # # # #
+        `)
+    basic.showLeds(`
+        . # . . #
+        . # . . #
+        . . . . .
+        . . . . .
+        # # # # .
+        `)
+    images.iconImage(IconNames.Sad).showImage(0)
+})
 let realisation = 0
 onstart()
+partTwo()

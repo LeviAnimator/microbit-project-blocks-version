@@ -6,7 +6,8 @@
         "radio": "*",
         "microphone": "*",
         "midi": "github:microsoft/pxt-midi#v2.2.0",
-        "ScrollText": "github:makecode-extensions/scrolltext#v1.4.0"
+        "ScrollText": "github:makecode-extensions/scrolltext#v1.4.0",
+        "BitBot": "github:4tronix/BitBot#1.5.2"
     },
     "files": [
         "main.blocks",
